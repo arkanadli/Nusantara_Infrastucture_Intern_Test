@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:auth_restfull/screens/note/screens/home.dart';
+import 'package:auth_restfull/views/note/screens/home.dart';
 import 'package:auth_restfull/utils/api_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class RegistrationController extends GetxController {
         "password": passwordController.text,
       };
       final resp = await dio.postUri(
-        Uri.parse("$baseUrl$UrlRegisterEmail"),
+        Uri.parse("$authBaseUrl$endPointRegister"),
         data: user,
         options: Options(headers: headers),
       );

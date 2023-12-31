@@ -3,8 +3,8 @@
 import 'package:auth_restfull/controllers/note_controller.dart';
 import 'package:auth_restfull/core/constants/constants.dart';
 import 'package:auth_restfull/models/note.dart';
-import 'package:auth_restfull/screens/auth/screens/signin_page.dart';
-import 'package:auth_restfull/screens/auth/screens/welcome_page.dart';
+import 'package:auth_restfull/views/auth/screens/signin_page.dart';
+import 'package:auth_restfull/views/auth/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

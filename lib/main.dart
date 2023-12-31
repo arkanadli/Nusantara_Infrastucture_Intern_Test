@@ -1,6 +1,6 @@
 import 'package:auth_restfull/core/constants/constants.dart';
-import 'package:auth_restfull/screens/note/screens/home.dart';
-import 'package:auth_restfull/screens/auth/screens/welcome_page.dart';
+
+import 'package:auth_restfull/views/auth/screens/welcome_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

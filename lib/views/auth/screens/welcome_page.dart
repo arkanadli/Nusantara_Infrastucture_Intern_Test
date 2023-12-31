@@ -1,7 +1,7 @@
 import 'package:auth_restfull/core/constants/constants.dart';
-import 'package:auth_restfull/screens/auth/screens/register_page.dart';
-import 'package:auth_restfull/screens/auth/screens/signin_page.dart';
-import 'package:auth_restfull/screens/auth/widgets/my_text_button.dart';
+import 'package:auth_restfull/views/auth/screens/register_page.dart';
+import 'package:auth_restfull/views/auth/screens/signin_page.dart';
+import 'package:auth_restfull/views/auth/widgets/my_text_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

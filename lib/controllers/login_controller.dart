@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:auth_restfull/screens/note/screens/home.dart';
+import 'package:auth_restfull/views/note/screens/home.dart';
 import 'package:auth_restfull/utils/api_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class LoginController extends GetxController {
         "password": passwordController.text,
       });
       final resp = await dio.post(
-        "$baseUrl$UrlLoginEmail",
+        "$authBaseUrl$endPointEmail",
         data: user,
         // options: Options(headers: headers),
       );

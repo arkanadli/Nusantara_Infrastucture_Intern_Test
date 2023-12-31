@@ -1,5 +1,5 @@
-import 'package:auth_restfull/core/constants/constants.dart';
 import 'package:auth_restfull/models/note.dart';
+import 'package:auth_restfull/utils/api_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

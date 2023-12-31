@@ -1,9 +1,9 @@
 import 'package:auth_restfull/controllers/login_controller.dart';
 import 'package:auth_restfull/core/constants/constants.dart';
-import 'package:auth_restfull/screens/auth/screens/register_page.dart';
-import 'package:auth_restfull/screens/auth/widgets/my_password_field.dart';
-import 'package:auth_restfull/screens/auth/widgets/my_text_button.dart';
-import 'package:auth_restfull/screens/auth/widgets/my_text_field.dart';
+import 'package:auth_restfull/views/auth/screens/register_page.dart';
+import 'package:auth_restfull/views/auth/widgets/my_password_field.dart';
+import 'package:auth_restfull/views/auth/widgets/my_text_button.dart';
+import 'package:auth_restfull/views/auth/widgets/my_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
