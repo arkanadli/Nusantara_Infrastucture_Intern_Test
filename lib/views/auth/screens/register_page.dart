@@ -85,7 +85,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   MyTextButton(
                     buttonName: 'Register',
-                    onTap: () {},
+                    onTap: () {
+                      registrationController.registerWithEmail();
+                    },
                     bgColor: Colors.white,
                     textColor: Colors.black87,
                   ),

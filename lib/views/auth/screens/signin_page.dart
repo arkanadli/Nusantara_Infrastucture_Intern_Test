@@ -86,6 +86,7 @@ class _SignInPageState extends State<SignInPage> {
                     buttonName: 'Sign In',
                     onTap: () {
                       loginController.loginWithEmail();
+                      
                     },
                     bgColor: Colors.white,
                     textColor: Colors.black87,

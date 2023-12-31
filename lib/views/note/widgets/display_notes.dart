@@ -1,5 +1,3 @@
-// ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
-
 import 'package:auth_restfull/controllers/note_controller.dart';
 import 'package:auth_restfull/core/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -39,54 +37,56 @@ class DisplayNotes extends StatelessWidget {
                     style: tNotesTextBody,
                   ),
                   onTap: () {
-                    // Show a dialog for editing
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         noteController.titleController.text = note.title;
                         noteController.noteController.text = note.note;
                         return AlertDialog(
-                          title: const Text('Edit Note'),
-                          content: Column(
-                            children: [
-                              SizedBox(
-                                width: double
-                                    .maxFinite, // Make the text field wider
-                                child: TextField(
-                                  controller: noteController.titleController,
-                                  decoration:
-                                      const InputDecoration(labelText: 'Title'),
-                                ),
+                          title: Text(noteController.titleController.text),
+                          content: SizedBox(
+                            height: 200,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    width: double.maxFinite,
+                                    child: TextField(
+                                      controller:
+                                          noteController.titleController,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Title'),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: double.maxFinite,
+                                    child: TextField(
+                                      controller: noteController.noteController,
+                                      maxLines: null,
+                                      keyboardType: TextInputType.multiline,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Note'),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                width: double
-                                    .maxFinite, // Make the text field wider
-                                child: TextField(
-                                  controller: noteController.noteController,
-                                  maxLines: null, // Allow multiple lines
-                                  keyboardType: TextInputType.multiline,
-                                  decoration:
-                                      const InputDecoration(labelText: 'Note'),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                           actions: [
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pop(); // Close the dialog
+                                Navigator.of(context).pop();
                               },
                               child: const Text('Cancel'),
                             ),
                             TextButton(
                               onPressed: () {
-                                // Implement updateNote functionality
                                 noteController.updateNote(
                                   id: note.id,
                                   title: noteController.titleController.text,
                                   note: noteController.noteController.text,
                                 );
-                                Navigator.of(context).pop(); // Close the dialog
+                                Navigator.of(context).pop();
                               },
                               child: const Text('Update'),
                             ),
@@ -98,7 +98,6 @@ class DisplayNotes extends StatelessWidget {
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
-                      // Show a confirmation dialog for deletion
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -109,17 +108,14 @@ class DisplayNotes extends StatelessWidget {
                             actions: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog
+                                  Navigator.of(context).pop();
                                 },
                                 child: const Text('Cancel'),
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // Implement deleteNote functionality
                                   noteController.deleteNote(note.id);
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog
+                                  Navigator.of(context).pop();
                                 },
                                 child: const Text('Delete'),
                               ),

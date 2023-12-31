@@ -31,6 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
               final SharedPreferences prefs = await _prefs;
               prefs.clear();
               Get.offAll(() => const WelcomePage());
+              // Show a SnackBar when the user logs out
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Successfully logged out'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             },
             child: const Icon(
               Icons.logout,
@@ -62,19 +69,44 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   if (snapshot.hasError) {
                     return Center(
-                      child: Column(
-                        children: [
-                          Text(snapshot.error.toString()),
-                          TextButton(
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Card(
+                              color: Colors.black,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  snapshot.error.toString(),
+                                  style: tBodyText,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            TextButton(
                               onPressed: () {
-                                setState(() {});
+                                setState(() {
+                                  noteController.getNotes();
+                                });
                               },
-                              child: const Icon(Icons.refresh))
-                        ],
+                              child: const Icon(
+                                Icons.refresh,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                            ),
+                            const Text(
+                              'Tap to restart',
+                              style: tBodyText,
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }
-
                   final listNotes = noteController.notes;
 
                   return DisplayNotes(noteController: noteController);

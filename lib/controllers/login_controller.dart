@@ -48,7 +48,6 @@ class LoginController extends GetxController {
         throw resp.data['Message'] ?? "Unknown Error Occured";
       }
     } catch (e) {
-      Get.back();
       showDialog(
         context: Get.context!,
         builder: (context) => SimpleDialog(

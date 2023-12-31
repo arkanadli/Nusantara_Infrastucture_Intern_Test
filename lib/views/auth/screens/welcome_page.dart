@@ -33,7 +33,7 @@ class WelcomePage extends StatelessWidget {
                       height: 20,
                     ),
                     const Text(
-                      "Enterprise team\ncollaboration.",
+                      "Unleash creativity\n into Canvas.",
                       style: tHeadline,
                       textAlign: TextAlign.center,
                     ),
@@ -43,7 +43,7 @@ class WelcomePage extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: const Text(
-                        "Bring together your files, your tools, project and people.Including a new mobile and desktop application.",
+                        "Transform inspiration into action with our intuitive note-taking app. Start creating, start achieving.",
                         style: tBodyText,
                         textAlign: TextAlign.center,
                       ),
