@@ -25,7 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
+      appBar:
+          AppBar(title: const Text('Arcanery'), centerTitle: false, actions: [
         TextButton(
             onPressed: () async {
               final SharedPreferences prefs = await _prefs;
