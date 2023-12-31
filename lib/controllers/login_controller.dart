@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auth_restfull/screens/note/screens/home.dart';
 import 'package:auth_restfull/utils/api_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,33 +10,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final dio = Dio();
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> loginWithEmail() async {
     try {
-      final headers = {'Content-Type': 'application/json'};
-      final dio = Dio();
+      // final headers = {'Content-Type': 'application/json'};
+
+      final user = jsonEncode({
+        "email": emailController.text.trim(),
+        "password": passwordController.text,
+      });
       final resp = await dio.post(
         "$baseUrl$UrlLoginEmail",
-        data: {
-          "email": emailController.text.trim(),
-          "password": passwordController.text,
-        },
-        options: Options(headers: headers),
+        data: user,
+        // options: Options(headers: headers),
       );
       if (resp.statusCode == 200) {
-        final json = jsonDecode(resp.data);
+        final json = resp.data;
+
+        print(json);
         if (json['code'] == 0) {
           final token = json['data']['Token'];
-          print(token);
+          final name = json['data']['Name'];
           final SharedPreferences prefs = await _prefs;
 
           await prefs.setString('token', token);
+          await prefs.setString('name', name);
           emailController.clear();
           passwordController.clear();
+          Get.offAll(const HomeScreen());
         } else {
-          throw json['Message'] ?? "Unknown Error Occured";
+          throw resp.data['Message'] ?? "Unknown Error Occured";
         }
       } else {
         throw resp.data['Message'] ?? "Unknown Error Occured";

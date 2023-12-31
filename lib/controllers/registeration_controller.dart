@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auth_restfull/screens/note/screens/home.dart';
 import 'package:auth_restfull/utils/api_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -10,40 +11,46 @@ class RegistrationController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final dio = Dio();
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> registerWithEmail() async {
     try {
       final headers = {'Content-Type': 'application/json'};
-      final dio = Dio();
-      final resp = await dio.post(
-        "$baseUrl$UrlRegisterEmail",
-        data: {
-          "name": nameController.text,
-          "email": emailController.text.trim(),
-          "password": passwordController.text,
-        },
+      final user = {
+        "name": nameController.text,
+        "email": emailController.text.trim(),
+        "password": passwordController.text,
+      };
+      final resp = await dio.postUri(
+        Uri.parse("$baseUrl$UrlRegisterEmail"),
+        data: user,
         options: Options(headers: headers),
       );
+      final json = resp.data;
+      print(json);
       if (resp.statusCode == 200) {
-        final json = jsonDecode(resp.data);
         if (json['code'] == 0) {
           final token = json['data']['Token'];
-          print(token);
+          final name = json['data']['Name'];
           final SharedPreferences prefs = await _prefs;
 
           await prefs.setString('token', token);
+          await prefs.setString('name', name);
           nameController.clear();
           emailController.clear();
           passwordController.clear();
+          Get.offAll(const HomeScreen());
         } else {
-          throw json['Message'] ?? "Unknown Error Occured";
+          throw json['Message'] ?? "Unknown Erro  r Occured";
         }
       } else {
         throw resp.data['Message'] ?? "Unknown Error Occured";
       }
       print(resp);
+    } on DioException catch (dioError) {
+      print('DioException: $dioError');
     } catch (e) {
       Get.back();
       showDialog(
