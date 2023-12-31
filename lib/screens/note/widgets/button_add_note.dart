@@ -20,7 +20,7 @@ class ButtonAddNote extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Add Nsote'),
+            title: const Text('Add Note'),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
